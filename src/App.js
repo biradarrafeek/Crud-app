@@ -3,59 +3,66 @@ import React, { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { PlusCircle, Edit, Trash } from "react-feather";
-function App() {
-  const blankUser = {
-    "name": "",
-    "email": "",
-    "role": "",
-    "address": ""
 
-  }
-
-
-  const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(blankUser);
-  const [userdata, setUserdata] = useState([]);
-  const [action, setAction] = useState('Add');
-  const [editIndex, setEditIndex] = useState(null);
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => {
-    setOpen(false);
-    setAction('Add');
-  }
-
-  const addUser = () => {
-    setUserdata([...userdata, user]);
-    setUser(blankUser);
-    onCloseModal();
-  }
-
-  const editUser = (index) => {
-    setAction('Edit');
-    const selectedUser = userdata.find((x, i) => i === index);
-    setUser(selectedUser);
-    setEditIndex(index);
-    onOpenModal();
-  }
-
-  const updateUser = () => {
-    const newUsers = userdata.map((x, i) => {
-      if (i === editIndex) {
-        x = user;
-      }
-      return x;
-    });
-    setUserdata(newUsers);
-    setUserdata(newUsers);
-    setUser(blankUser);
-    onCloseModal();
-  }
-
-const deleteUser  = (index) => {
-  const newUsers = userdata.filter((x,i) => {return i !== index});
-  setUserdata(newUsers);
+// Define a blank user object with empty string properties
+const blankUser = {
+ "name": "",
+ "email": "",
+ "role": "",
+ "address": ""
 }
+
+function App() {
+ // Initialize state variables
+ const [open, setOpen] = useState(false); // Modal open/close flag
+ const [user, setUser] = useState(blankUser); // Individual user data object
+ const [userdata, setUserdata] = useState([]); // Array of user data objects
+ const [action, setAction] = useState('Add'); // Action type (add or edit)
+ const [editIndex, setEditIndex] = useState(null); // Index of the user to be edited
+
+ // Functions for opening and closing the modal
+ const onOpenModal = () => setOpen(true);
+ const onCloseModal = () => {
+   setOpen(false);
+   setAction('Add');
+ }
+
+ // Function for adding a new user
+ const addUser = () => {
+   setUserdata([...userdata, user]); // Add new user object to userdata array
+   setUser(blankUser); // Reset user object to blank user
+   onCloseModal(); 
+ }
+
+ // Function for editing a user
+ const editUser = (index) => {
+   setAction('Edit'); 
+   const selectedUser = userdata.find((x, i) => i === index); // Find user object at the given index
+   setUser(selectedUser); // Set user object to the selected user
+   setEditIndex(index); // Set the index of the user to be edited
+   onOpenModal(); 
+ }
+
+ // Function for updating a user
+ const updateUser = () => {
+   const newUsers = userdata.map((x, i) => {
+     if (i === editIndex) {
+       x = user; // Replace the user object at the given index with the updated user object
+     }
+     return x;
+   });
+   setUserdata(newUsers); // Update the userdata array with the new array of user objects
+   setUser(blankUser); // Reset user object to blank user
+   onCloseModal(); 
+ }
+
+ // Function for deleting a user
+ const deleteUser = (index) => {
+   const newUsers = userdata.filter((x, i) => {
+     return i !== index; // Filter out the user object at the given index
+   });
+   setUserdata(newUsers); // Update the userdata array with the new array of user objects
+ }
 
 
   return (
