@@ -104,7 +104,7 @@ function App() {
                   </button>
                   <button className='btn m12' onClick={() => deleteUser(index)}>
                     <Trash size={16}>Delete</Trash>
-                    <span>Edit</span>
+                    <span>Delete</span>
                   </button>
                 </td>
               </tr>)
