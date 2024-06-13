@@ -1,7 +1,9 @@
 **CRUD App:**
 
 This is a simple CRUD (Create, Read, Update, Delete) application built using React. It allows users to manage a list of user profiles with details such as name, email, role, and address. Below is an explanation of the main components and functionalities of the app.
-Components and Functionalities
+
+
+**Components and Functionalities**
 
     State Variables
         open: Boolean state to manage the visibility of the modal.
